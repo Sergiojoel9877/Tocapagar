@@ -5,10 +5,10 @@
     -->
     <Shell.Resources>
         <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="NavigationPrimary">#F4F6F6</Color>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="#F4F6F6" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
@@ -23,11 +23,11 @@
     <!-- Your Pages -->
     <TabBar>
         <Tab Title="Browse" Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Route="Home" ContentTemplate="{DataTemplate local:ItemsPage}" />
         </Tab>
-        <Tab Title="About" Icon="tab_about.png">
+        <!--<Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
-        </Tab>
+        </Tab>-->
     </TabBar>
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.

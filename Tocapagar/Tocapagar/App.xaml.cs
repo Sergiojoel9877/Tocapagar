@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Tocapagar.Services;
+//using Tocapagar.Services;
 using Tocapagar.Views;
 
 namespace Tocapagar
@@ -13,8 +13,8 @@ namespace Tocapagar
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            //c.Register<MockDataStore>();
+            MainPage = new Lazy<AppShell>(()=> new AppShell()).Value;
         }
 
         protected override void OnStart()

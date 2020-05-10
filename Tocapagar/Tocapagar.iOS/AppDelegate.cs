@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace Tocapagar.iOS
 {
@@ -25,6 +26,7 @@ namespace Tocapagar.iOS
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            FormsMaterial.Init();
 
             return base.FinishedLaunching(app, options);
         }
