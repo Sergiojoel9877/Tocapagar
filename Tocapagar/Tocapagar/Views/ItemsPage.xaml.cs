@@ -46,5 +46,11 @@ namespace Tocapagar.Views
             //if (viewModel.Items.Count == 0)
             //    viewModel.IsBusy = true;
         }
+
+        void TouchEff_Completed(Xamarin.Forms.VisualElement sender, TouchEffect.EventArgs.TouchCompletedEventArgs args)
+        {
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+            Shell.Current.FlyoutIsPresented = true;
+        }
     }
 }

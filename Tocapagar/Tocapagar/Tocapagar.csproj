@@ -18,6 +18,7 @@
     <PackageReference Include="Shiny.Push" Version="1.1.0.1570-beta" />
     <PackageReference Include="Shiny.Notifications" Version="1.1.0.1570" />
     <PackageReference Include="Shiny.Core" Version="1.1.0.1570" />
+    <PackageReference Include="TouchView" Version="4.1.40" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\AboutPage.xaml" />
@@ -37,12 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Fonts\FontAwesome5Free-Solid-900.otf" />
-    <None Remove="Fonts\FontAwesome5Free-Regular-400.otf" />
-    <None Remove="Fonts\FontAwesome5Brands-Regular-400.otf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\FontAwesome5Free-Solid-900.otf" />
-    <EmbeddedResource Include="Fonts\FontAwesome5Free-Regular-400.otf" />
-    <EmbeddedResource Include="Fonts\FontAwesome5Brands-Regular-400.otf" />
   </ItemGroup>
 </Project>

@@ -88,6 +88,9 @@
     <PackageReference Include="Shiny.Push">
       <Version>1.1.0.1570-beta</Version>
     </PackageReference>
+    <PackageReference Include="TouchView">
+      <Version>4.1.40</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

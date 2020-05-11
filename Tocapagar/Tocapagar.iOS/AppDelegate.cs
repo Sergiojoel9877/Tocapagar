@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
+using TouchEffect.iOS;
 
 namespace Tocapagar.iOS
 {
@@ -24,6 +25,7 @@ namespace Tocapagar.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            TouchEffectPreserver.Preserve();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             FormsMaterial.Init();
