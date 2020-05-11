@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:local="clr-namespace:Tocapagar.Views" Title="Tocapagar" x:Class="Tocapagar.AppShell">
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:local="clr-namespace:Tocapagar.Views"
+    Title="Tocapagar"
+    FlyoutBehavior="Flyout"
+    x:Class="Tocapagar.AppShell">
     <!-- 
         Styles and Resources 
     -->
@@ -22,7 +31,7 @@
     </Shell.Resources>
     <!-- Your Pages -->
     <TabBar>
-        <Tab Title="Browse" Icon="tab_feed.png">
+        <Tab Title="Home">
             <ShellContent Route="Home" ContentTemplate="{DataTemplate local:ItemsPage}" />
         </Tab>
         <!--<Tab Title="About" Icon="tab_about.png">
