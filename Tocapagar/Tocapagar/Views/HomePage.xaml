@@ -11,11 +11,12 @@
     xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:icons="clr-namespace:Tocapagar.Helpers"
     xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
-    x:Class="Tocapagar.Views.ItemsPage">
+    x:Class="Tocapagar.Views.HomePage">
     <ContentPage.Content>
         <FlexLayout Direction="Row">
             <!--NavigationBar-->
             <pancakeview:PancakeView
+                x:Name="NavBar"
                 Elevation="10"
                 CornerRadius="20"
                 BackgroundColor="White"
@@ -25,7 +26,7 @@
                 FlexLayout.Grow="1"
                 FlexLayout.Order="0"
                 HeightRequest="80">
-                <Grid CompressedLayout.IsHeadless="True">
+                <Grid VerticalOptions="Start" Margin="0,13,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -69,18 +70,20 @@
                         </Label.FormattedText>
                     </Label>
                     <pancakeview:PancakeView
+                        x:Name="MessageContainer"
                         CornerRadius="10"
                         BackgroundColor="White"
                         BorderColor="#0A23FB"
                         BorderThickness="{OnPlatform Android=4, iOS=2}"
                         Grid.Column="2"
                         Grid.ColumnSpan="2"
+                        HeightRequest="55"
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="FillAndExpand">
                         <pancakeview:PancakeView.Margin>
                             <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="Android" Value="10,8,8,8"/>
-                                <On Platform="iOS" Value="-30,8,8,8"/>
+                                <On Platform="Android" Value="-30,0,16,0"/>
+                                <On Platform="iOS" Value="-30,0,16,0"/>
                             </OnPlatform>
                         </pancakeview:PancakeView.Margin>
                         <FlexLayout Direction="Row" Margin="16,0,0,0">
@@ -99,6 +102,7 @@
                                  </Label.FormattedText>
                              </Label>
                             <Label
+                                x:Name="ToggleArrow"
                                 HorizontalTextAlignment="End"
                                 FlexLayout.Grow="1"
                                 FlexLayout.AlignSelf="Center"
@@ -106,7 +110,11 @@
                                 TextColor="#0A23FB"
                                 FontFamily="FontAwesomeSolid"
                                 Text="{x:Static icons:Icons.AngleDown}"
-                                FontSize="20"/>
+                                FontSize="20">
+                                <Label.Effects>
+                                    <touch:TouchEff Completed="NavArrowTapped"/>
+                                </Label.Effects>
+                            </Label>
                         </FlexLayout>
                     </pancakeview:PancakeView>
                 </Grid>

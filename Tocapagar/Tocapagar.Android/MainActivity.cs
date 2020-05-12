@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Material;
 using Shiny;
 using Android.Content;
+using TouchEffect.Android;
 
 namespace Tocapagar.Droid
 {
@@ -37,6 +38,7 @@ namespace Tocapagar.Droid
             global::Xamarin.Forms.Forms.SetFlags("");
             
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            TouchEffectPreserver.Preserve();
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
             LoadApplication(_app.Value);
