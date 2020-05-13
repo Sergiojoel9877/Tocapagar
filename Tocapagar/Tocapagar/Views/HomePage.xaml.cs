@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Tocapagar.Helpers;
 using Xamarin.Forms.PancakeView;
+using System.Threading.Tasks;
+using AsyncAwaitBestPractices;
 
 namespace Tocapagar.Views
 {
     public partial class HomePage : ContentPage
     {
+        readonly object _locker = new object();
+
         public HomePage()
         {
             InitializeComponent();
@@ -19,79 +23,66 @@ namespace Tocapagar.Views
             Shell.Current.FlyoutIsPresented = true;
         }
 
-        async void NavArrowTapped(Xamarin.Forms.VisualElement sender, TouchEffect.EventArgs.TouchCompletedEventArgs args)
+        void NavArrowTapped(Xamarin.Forms.VisualElement sender, TouchEffect.EventArgs.TouchCompletedEventArgs args)
         {
-            if (sender is Label arrowIcon)
+            lock (sender)
             {
-                var arrow = (Label)FindByName("ToggleArrow");
-                var navBar = (PancakeView)FindByName("NavBar");
-                var messageContainer = (PancakeView)FindByName("MessageContainer");
-
-                var containerWidth = messageContainer.Width;
-                var containerHeight = messageContainer.Height;
-                var navBarHeight = navBar.Height;
-
-                var animationDown = new Animation(s => navBar.HeightRequest = s, 80, 360);
-                var animationUp = new Animation(s => navBar.HeightRequest = s, 360, 80);
-
-                //var animationIncreaseMessageContainerWidthSize = new Animation(s => messageContainer.WidthRequest = s, containerWidth, navBar.Width);
-                //var animationIncreaseMessageContainerHeightSize = new Animation(s => messageContainer.HeightRequest = s, containerHeight, 150);
-
-                var animationNavBarResizeHeightSize = new Animation(s => navBar.HeightRequest = s, 80, 0);
-
-                if (arrowIcon.Text == Icons.AngleDown)
+                if (sender is Label arrowIcon)
                 {
-                    await Device.InvokeOnMainThreadAsync(async () =>
+                    var arrow = (Label)FindByName("ToggleArrow");
+                    var arrow2 = (Label)FindByName("ToggleArrow2");
+                    var navBar = (PancakeView)FindByName("NavBar");
+                    var navBar2 = (PancakeView)FindByName("NavBar2");
+                    var messageContainer = (PancakeView)FindByName("MessageContainer");
+                    var messageContainer2 = MessageContainer2;
+                    var navGrid = (Grid)FindByName("NavGrid");
+                    var containerWidth = messageContainer.Width;
+                    var containerHeight = messageContainer.Height;
+                    var navBarHeight = navBar.Height;
+                    navBar2.IsEnabled = false;
+                    navBar2.IsVisible = false;
+                    MainGrid.LowerChild(navBar2);
+                    messageContainer2.FadeTo(0,200);
+                    //await messageContainer.FadeTo(1, 200);
+
+                    if (arrowIcon.Text == Icons.AngleDown)
                     {
-                        //animationNavBarResizeHeightSize.Commit(navBar, "navBarAnimationResizeHeight", 16, 250, Easing.SinOut, (d,b)=>
-                        //{
-                        //    navBar.HeightRequest = 1;
-                        //}, ()=> false);
-
-                        await navBar.TranslateTo(0, -500, 200, Easing.CubicInOut);
-
-                        //animationNavBarResizeHeightSize.Commit(navBar, "navBarAnimationResizeHeight", 16, 250, Easing.Linear, (d, b) =>
-                        //{
-                        //    navBar.HeightRequest = navBarHeight;
-                        //}, () => false);
-
-                        await navBar.TranslateTo(0, 0, 200, Easing.Linear);
-
-                        animationDown.Commit(navBar, "navBarAnimationDown", 16, 250, Easing.BounceOut, (d, b) =>
+                        Device.InvokeOnMainThreadAsync(async () =>
                         {
-                            navBar.HeightRequest = 360;
-                        }, () => false);
+                            await messageContainer.FadeTo(0, 200);
+                            navBar2.IsEnabled = true;
+                            navBar2.IsVisible = true;
+                            MainGrid.RaiseChild(navBar2);
+                            await AnimateViewInAbsoluteLayout(navBar2, AbsoluteLayout.GetLayoutBounds(navBar2), new Rectangle(0, 0, NavBar2.Bounds.Width, NavBar2.Bounds.Height + 200), 250, Easing.Linear);
+                            await messageContainer2.FadeTo(1, 200);
+                            arrow2.Text = Icons.AngleUp;
+                        }).SafeFireAndForget();
+                        return;
+                    }
 
-                        //await messageContainer.TranslateTo(0, 80);
-
-                        //animationIncreaseMessageContainerWidthSize.Commit(messageContainer, "messageContainerWidth", 16, 250, Easing.Linear, (d, b) =>
-                        //{
-                        //    messageContainer.WidthRequest = navBar.Width;
-                        //}, ()=> false);
-
-                        //animationIncreaseMessageContainerHeightSize.Commit(messageContainer, "messageContainerHeight", 16, 250, Easing.Linear, (d, b) =>
-                        //{
-                        //    messageContainer.HeightRequest = 150;
-                        //}, ()=> false);
-
-                        arrow.Text = Icons.AngleUp;
-                    });
-                    return;
-                }
-
-                if (arrowIcon.Text == Icons.AngleUp)
-                {
-                    await Device.InvokeOnMainThreadAsync(() =>
+                    if (arrowIcon.Text == Icons.AngleUp)
                     {
-                        animationUp.Commit(navBar, "navBarAnimationUp", 16, 250, Easing.Linear, (d, b) =>
+                        Device.InvokeOnMainThreadAsync(async () =>
                         {
-                            navBar.HeightRequest = 80;
-                        }, () => false);
-                    });
-                    arrow.Text = Icons.AngleDown;
-                    return;
+                            arrow2.Text = Icons.AngleDown;
+                            await messageContainer2.FadeTo(0, 200);
+                            await AnimateViewInAbsoluteLayout(navBar2, AbsoluteLayout.GetLayoutBounds(navBar2), new Rectangle(0, 0, NavBar2.Width, NavBar2.Height), 250, Easing.Linear);
+                            MainGrid.LowerChild(navBar2); 
+                            navBar2.IsEnabled = false;
+                            navBar2.IsVisible = false;
+                            await messageContainer.FadeTo(1, 200);
+                        }).SafeFireAndForget();
+                        return;
+                    }
                 }
             }
+        }
+
+        public static async Task AnimateViewInAbsoluteLayout(View view, Rectangle rectAbsolute, Rectangle rectDest, uint time, Easing easing = null)
+        {
+            await view.LayoutTo(rectDest, time, easing);
+            AbsoluteLayout.SetLayoutBounds(view, rectAbsolute);
+            AbsoluteLayout.SetLayoutFlags(view, AbsoluteLayoutFlags.All);
         }
     }
 }
