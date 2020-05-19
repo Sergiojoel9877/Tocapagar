@@ -35,7 +35,7 @@ namespace Tocapagar.Droid
             this.ShinyOnCreate();
             base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.SetFlags("");
+            global::Xamarin.Forms.Forms.SetFlags("Expander_Experimental");
             
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             TouchEffectPreserver.Preserve();

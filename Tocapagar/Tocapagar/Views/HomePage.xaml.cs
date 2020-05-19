@@ -12,6 +12,7 @@ namespace Tocapagar.Views
     public partial class HomePage : ContentPage
     {
         readonly object _locker = new object();
+        int _tryCount { get; set; } = 0;
 
         public HomePage()
         {
@@ -23,59 +24,36 @@ namespace Tocapagar.Views
             Shell.Current.FlyoutIsPresented = true;
         }
 
-        void NavArrowTapped(Xamarin.Forms.VisualElement sender, TouchEffect.EventArgs.TouchCompletedEventArgs args)
+        async void NavArrowTapped(Xamarin.Forms.VisualElement sender, TouchEffect.EventArgs.TouchCompletedEventArgs args)
         {
-            lock (sender)
-            {
-                if (sender is Label arrowIcon)
-                {
-                    var arrow = (Label)FindByName("ToggleArrow");
-                    var arrow2 = (Label)FindByName("ToggleArrow2");
-                    var navBar = (PancakeView)FindByName("NavBar");
-                    var navBar2 = (PancakeView)FindByName("NavBar2");
-                    var messageContainer = (PancakeView)FindByName("MessageContainer");
-                    var messageContainer2 = MessageContainer2;
-                    var navGrid = (Grid)FindByName("NavGrid");
-                    var containerWidth = messageContainer.Width;
-                    var containerHeight = messageContainer.Height;
-                    var navBarHeight = navBar.Height;
-                    navBar2.IsEnabled = false;
-                    navBar2.IsVisible = false;
-                    MainGrid.LowerChild(navBar2);
-                    messageContainer2.FadeTo(0,200);
-                    //await messageContainer.FadeTo(1, 200);
+            _tryCount++;
 
-                    if (arrowIcon.Text == Icons.AngleDown)
-                    {
-                        Device.InvokeOnMainThreadAsync(async () =>
-                        {
-                            await messageContainer.FadeTo(0, 200);
-                            navBar2.IsEnabled = true;
-                            navBar2.IsVisible = true;
-                            MainGrid.RaiseChild(navBar2);
-                            await AnimateViewInAbsoluteLayout(navBar2, AbsoluteLayout.GetLayoutBounds(navBar2), new Rectangle(0, 0, NavBar2.Bounds.Width, NavBar2.Bounds.Height + 200), 250, Easing.Linear);
-                            await messageContainer2.FadeTo(1, 200);
-                            arrow2.Text = Icons.AngleUp;
-                        }).SafeFireAndForget();
-                        return;
-                    }
+            if (_tryCount > 1)
+                return;
 
-                    if (arrowIcon.Text == Icons.AngleUp)
+            if (sender is Label)
+                if (ToggleArrow.RotationX == 0)
+                    await Device.InvokeOnMainThreadAsync(async () =>
                     {
-                        Device.InvokeOnMainThreadAsync(async () =>
+                        await Task.WhenAll(new Task[]
                         {
-                            arrow2.Text = Icons.AngleDown;
-                            await messageContainer2.FadeTo(0, 200);
-                            await AnimateViewInAbsoluteLayout(navBar2, AbsoluteLayout.GetLayoutBounds(navBar2), new Rectangle(0, 0, NavBar2.Width, NavBar2.Height), 250, Easing.Linear);
-                            MainGrid.LowerChild(navBar2); 
-                            navBar2.IsEnabled = false;
-                            navBar2.IsVisible = false;
-                            await messageContainer.FadeTo(1, 200);
-                        }).SafeFireAndForget();
-                        return;
-                    }
-                }
-            }
+                            ToggleArrow.RotateXTo(180),
+                            AnimateViewInAbsoluteLayout(NavBar, AbsoluteLayout.GetLayoutBounds(NavBar), new Rectangle(0, 0, NavBar.Bounds.Width, NavBar.Bounds.Height + 200), 250, Easing.Linear),
+                        });
+                        MessageContainer2.IsVisible = true;
+                    });
+                else if(ToggleArrow.RotationX == 180)
+                    await Device.InvokeOnMainThreadAsync(async () =>
+                    {
+                        MessageContainer2.IsVisible = false;
+                        await Task.WhenAll(new Task[]
+                        {
+                            ToggleArrow.RotateXTo(0),
+                            AnimateViewInAbsoluteLayout(NavBar, AbsoluteLayout.GetLayoutBounds(NavBar), new Rectangle(0, 0, NavBar.Bounds.Width, NavBar.Bounds.Height - 200), 250, Easing.Linear)
+                        });
+                    });
+
+            _tryCount = 0;
         }
 
         public static async Task AnimateViewInAbsoluteLayout(View view, Rectangle rectAbsolute, Rectangle rectDest, uint time, Easing easing = null)

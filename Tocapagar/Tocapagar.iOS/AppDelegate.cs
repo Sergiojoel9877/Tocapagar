@@ -24,9 +24,10 @@ namespace Tocapagar.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("Expander_Experimental");
             TouchEffectPreserver.Preserve();
-            global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Forms.Forms.Init(); 
+            FormsMaterial.Init();
             LoadApplication(new App());
             FormsMaterial.Init();
 
