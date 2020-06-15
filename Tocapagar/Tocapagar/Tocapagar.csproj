@@ -6,19 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.937-pre4" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
     <PackageReference Include="Splat" Version="9.4.5" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.6.0.726" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.937-pre4" />
     <PackageReference Include="Realm" Version="4.3.0" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.0" />
-    <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.1-pre1" />
-    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1-pre1" />
-    <PackageReference Include="Shiny.Push" Version="1.1.0.1570-beta" />
-    <PackageReference Include="Shiny.Notifications" Version="1.1.0.1570" />
-    <PackageReference Include="Shiny.Core" Version="1.1.0.1570" />
-    <PackageReference Include="TouchView" Version="4.1.40" />
+    <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.1" />
+    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1" />
+    <PackageReference Include="Shiny.Push" Version="1.2.0.1686" />
+    <PackageReference Include="Shiny.Notifications" Version="1.2.0.1686" />
+    <PackageReference Include="Shiny.Core" Version="1.2.0.1686" />
+    <PackageReference Include="TouchView" Version="4.1.51" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\AboutPage.xaml" />
