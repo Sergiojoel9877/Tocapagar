@@ -15,6 +15,7 @@ namespace Tocapagar.Views
     {
         readonly object _locker = new object();
         int _tryCount { get; set; } = 0;
+        bool _hasEntered { get; set; } = false;
 
         public HomePage()
         {
@@ -26,96 +27,54 @@ namespace Tocapagar.Views
             Shell.Current.FlyoutIsPresented = true;
         }
 
+        void SaveMessageContainerCoordinates()
+        {
+            Preferences.Set("f", MessageContainer.Bounds.ToString());
+            Preferences.Set("MC.X", MessageContainer.X);
+            Preferences.Set("MC.Y", MessageContainer.Y);
+            Preferences.Set("MC.Width", MessageContainer.Width);
+            Preferences.Set("MC.Height", MessageContainer.Height);
+        }
+
         async void NavArrowTapped(Xamarin.Forms.VisualElement sender, TouchEffect.EventArgs.TouchCompletedEventArgs args)
         {
-            _tryCount++;
-
-            if (_tryCount > 1)
-                return;
+            if(!_hasEntered)
+                SaveMessageContainerCoordinates();
 
             var NB = GR;
+            var MC = MessageContainer;
             var SIZE = 150;
-
+          
             if (sender is Label)
                 if (ToggleArrow.RotationX == 0)
-                    await Device.InvokeOnMainThreadAsync(async () =>
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
+                        NavGrid.RaiseChild(MessageContainer);
+                        MCTitle.Text = "Recuerda que pagar a tiempo hace que tu vida financiera sea mejor.";
+                        MCTitle.FontSize = 20;
                         var tsk1 = ToggleArrow.RotateXTo(180);
                         var tsk2 = NB.LayoutTo(new Rectangle(NB.Bounds.X, NB.Bounds.Y, NB.Bounds.Width, NB.Bounds.Height + SIZE), easing: Easing.SinOut);
-                        await Task.WhenAll(tsk1, tsk2);
+                        var tsk3 = MC.LayoutTo(new Rectangle(NB.Bounds.X, MC.Bounds.Y + 60, NavBar.Bounds.Width - 32 - 14, MC.Bounds.Height + 80), easing: Easing.SinOut);
+                        await Task.WhenAll(tsk1, tsk2, tsk3);
                         return;
                     });
                 else if (ToggleArrow.RotationX == 180)
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
+                        var x = Preferences.Get("MC.X", 0.0);
+                        var y = Preferences.Get("MC.Y", 0.0);
+                        var w = Preferences.Get("MC.Width", 0.0);
+                        var h = Preferences.Get("MC.Height", 0.0);
+                        MCTitle.Text = "Hey Sergio ...";
+                        MCTitle.FontSize = 15;
                         var tsk1 = ToggleArrow.RotateXTo(0);
                         var tsk2 = NB.LayoutTo(new Rectangle(NB.Bounds.X, NB.Bounds.Y, NB.Bounds.Width, NB.Bounds.Height - SIZE), easing: Easing.SinIn);
-                        await Task.WhenAll(tsk1, tsk2);
+                        var tsk3 = MC.LayoutTo(new Rectangle(x, y, w, h), easing: Easing.SinOut);
+                        await Task.WhenAll(tsk1, tsk2, tsk3);
                         return;
                     });
-            #region v2
-            //var NB = GR.RowDefinitions.FirstOrDefault();
 
-            //var SIZE = 150 /*NavBar.Height - 3000 * Math.PI / (Math.Pow(NavBar.Height, 2) / Math.Log(500))*/;
-            //var animationNavBarResizeHeightSizeUp = new Animation(s => NB.Height = s, NB.Height.Value, NB.Height.Value + SIZE);
-            //var animationNavBarResizeHeightSizeDown = new Animation(s => NB.Height = s, NB.Height.Value, NB.Height.Value - SIZE);
-
-            //if (sender is Label)
-            //    if (ToggleArrow.RotationX == 0)
-            //        await Device.InvokeOnMainThreadAsync(async () =>
-            //        {
-            //            //await BX.ScaleTo(0, 50);
-            //            MessageContainer2.IsVisible = true;
-            //            animationNavBarResizeHeightSizeUp.Commit(GR, "ChangeHeightUp", 16, 250, Easing.Linear, (d, b) =>
-            //            {
-            //                GR.RowDefinitions.First().Height = NB.Height;
-            //            }, () => false);
-            //            await ToggleArrow.RotateXTo(180);
-            //            return;
-            //        });
-            //    else if (ToggleArrow.RotationX == 180)
-            //        await Device.InvokeOnMainThreadAsync(async () =>
-            //        {
-            //            animationNavBarResizeHeightSizeDown.Commit(GR, "ChangeHeightDown", 16, 250, Easing.Linear, (d, b) =>
-            //            {
-            //                GR.RowDefinitions.First().Height = NB.Height;
-            //            }, () => false);
-            //            await ToggleArrow.RotateXTo(0);
-            //            MessageContainer2.IsVisible = false;
-            //            //await BX.ScaleTo(1, 50);
-            //            return;
-            //        });
-            #endregion
-            #region v1
-            //var SIZE = 300 /*NavBar.Height - 3000 * Math.PI / (Math.Pow(NavBar.Height, 2) / Math.Log(500))*/;
-            //var animationNavBarResizeHeightSizeUp = new Animation(s => NavBar.HeightRequest = s, NavBar.Height, NavBar.Height + SIZE);
-            //var animationNavBarResizeHeightSizeDown = new Animation(s => NavBar.HeightRequest = s, NavBar.Height, NavBar.Height - SIZE);
-
-            //if (sender is Label)
-            //    if (ToggleArrow.RotationX == 0)
-            //        await Device.InvokeOnMainThreadAsync(async () =>
-            //        {
-            //            MessageContainer2.IsVisible = true;
-            //            animationNavBarResizeHeightSizeUp.Commit(NavBar, "ChangeHeightUp", 16, 250, Easing.Linear, (d, b) =>
-            //            {
-            //                NavBar.HeightRequest = NavBar.HeightRequest;
-            //            }, () => false);
-            //            await ToggleArrow.RotateXTo(180);
-            //            return;
-            //        });
-            //    else if (ToggleArrow.RotationX == 180)
-            //        await Device.InvokeOnMainThreadAsync(async () =>
-            //        {
-            //            animationNavBarResizeHeightSizeDown.Commit(NavBar, "ChangeHeightDown", 16, 250, Easing.Linear, (d, b) =>
-            //            {
-            //                NavBar.HeightRequest = NavBar.HeightRequest;
-            //            }, () => false);
-            //            await ToggleArrow.RotateXTo(0);
-            //            MessageContainer2.IsVisible = false;
-            //            return;
-            //        });
-            #endregion
-            _tryCount--;
+            _hasEntered = true;
         }
 
         public static async Task AnimateViewInAbsoluteLayout(View view, Rectangle rectDest, uint time, Easing easing = null)

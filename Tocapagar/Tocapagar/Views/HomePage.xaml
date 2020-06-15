@@ -8,6 +8,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea="True"
     Shell.NavBarIsVisible="False"
+    BackgroundColor="Black"
     xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:icons="clr-namespace:Tocapagar.Helpers"
     xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
@@ -15,13 +16,18 @@
     <ContentPage.Content>
         <ScrollView CompressedLayout.IsHeadless="True">
             <AbsoluteLayout CompressedLayout.IsHeadless="True">
-                <BoxView
+                <!--<BoxView
                     x:Name="BX"
                     AbsoluteLayout.LayoutBounds="0,150,1,150"
                     AbsoluteLayout.LayoutFlags="WidthProportional,XProportional"
-                    BackgroundColor="Green"/>
+                    BackgroundColor="Green"/>-->
                 <!--NAVBAR-->
-                <FlexLayout x:Name="GR" CompressedLayout.IsHeadless="True" AbsoluteLayout.LayoutBounds="0,0,1,115" AbsoluteLayout.LayoutFlags="WidthProportional" Margin="16">
+                <FlexLayout
+                    x:Name="GR"
+                    CompressedLayout.IsHeadless="True"
+                    AbsoluteLayout.LayoutBounds="0,0,1,115"
+                    AbsoluteLayout.LayoutFlags="WidthProportional"
+                    Margin="16">
                     <pancakeview:PancakeView
                         x:Name="NavBar"
                         Elevation="10"
@@ -29,19 +35,19 @@
                         BackgroundColor="White"
                         BorderColor="#0A23FB"
                         BorderThickness="{OnPlatform Android=4, iOS=2}">
-                        <Grid x:Name="NavGrid" VerticalOptions="Start" Margin="8">
+                        <Grid x:Name="NavGrid" VerticalOptions="Center" Margin="8,8,8,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="90"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="75"/>
                             </Grid.ColumnDefinitions>
                             <Label
                                 x:Name="Menu"
-                                Margin="16"
+                                Margin="16,16,16,16"
                                 VerticalTextAlignment="Center"
                                 touch:TouchEff.NativeAnimation="False">
                                 <Label.Effects>
@@ -67,8 +73,8 @@
                                 Grid.Column="1">
                                 <Label.Margin>
                                     <OnPlatform x:TypeArguments="Thickness">
-                                        <On Platform="Android" Value="-45,15,0,15"/>
-                                        <On Platform="iOS" Value="-40,15,0,15"/>
+                                        <On Platform="Android" Value="-35,15,0,15"/>
+                                        <On Platform="iOS" Value="-30,15,0,15"/>
                                     </OnPlatform>
                                 </Label.Margin>
                                 <Label.FormattedText>
@@ -88,25 +94,37 @@
                                 HeightRequest="57">
                                 <pancakeview:PancakeView.Margin>
                                     <OnPlatform x:TypeArguments="Thickness">
-                                        <On Platform="Android" Value="-30,5,5,5"/>
-                                        <On Platform="iOS" Value="-20,5,5,5"/>
+                                        <On Platform="Android" Value="-14,5,16,5"/>
+                                        <On Platform="iOS" Value="-5,5,50,5"/>
                                     </OnPlatform>
                                 </pancakeview:PancakeView.Margin>
-                                <FlexLayout Direction="Row" Margin="16,0,0,0">
+                                <Grid HorizontalOptions="FillAndExpand" Margin="16,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
                                     <Label
+                                        x:Name="MCTitle2"
                                         HorizontalOptions="Fill"
-                                        FlexLayout.AlignSelf="Center">
+                                        VerticalTextAlignment="Center"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        LineBreakMode="CharacterWrap">
                                         <Label.Margin>
                                             <OnPlatform x:TypeArguments="Thickness">
-                                                <On Platform="Android" Value="0,0,0,0"/>
-                                                <On Platform="iOS" Value="0,0,0,0"/>
+                                                <On Platform="Android" Value="0,0,30,0"/>
+                                                <On Platform="iOS" Value="0,0,30,0"/>
                                             </OnPlatform>
                                         </Label.Margin>
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span
+                                                    x:Name="MCTitle"
                                                     TextColor="Gray"
-                                                    Text="Hey Sergio .."
+                                                    Text="Hey Sergio"
                                                     FontAttributes="Bold"
                                                     FontSize="Small"/>
                                             </FormattedString>
@@ -115,255 +133,34 @@
                                     <Label
                                         x:Name="ToggleArrow"
                                         HorizontalTextAlignment="End"
-                                        FlexLayout.Grow="1"
-                                        FlexLayout.AlignSelf="Center"
+                                        VerticalOptions="Center"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
                                         TextColor="#0A23FB"
                                         FontFamily="FontAwesomeSolid"
                                         Text="{x:Static icons:Icons.AngleDown}"
                                         FontSize="20">
                                         <Label.Margin>
                                             <OnPlatform x:TypeArguments="Thickness">
-                                                <On Platform="Android" Value="0,0,16,0"/>
-                                                <On Platform="iOS" Value="0,0,16,0"/>
+                                                <On Platform="Android" Value="-60,0,16,0"/>
+                                                <On Platform="iOS" Value="-60,0,16,0"/>
                                             </OnPlatform>
                                         </Label.Margin>
                                         <Label.Effects>
                                             <touch:TouchEff Completed="NavArrowTapped"/>
                                         </Label.Effects>
                                     </Label>
-                                </FlexLayout>
+                                </Grid>
                             </pancakeview:PancakeView>
                             <pancakeview:PancakeView
-                                x:Name="MessageContainer2"
-                                CornerRadius="10"
-                                BorderColor="#0A23FB"
+                                CompressedLayout.IsHeadless="True"
                                 Grid.Row="1"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="4"
-                                HeightRequest="152"
-                                BorderThickness="{OnPlatform Android=4, iOS=2}">
-                                <pancakeview:PancakeView.Margin>
-                                    <OnPlatform x:TypeArguments="Thickness">
-                                        <On Platform="Android" Value="16"/>
-                                        <On Platform="iOS" Value="16"/>
-                                    </OnPlatform>
-                                </pancakeview:PancakeView.Margin>
-                                <FlexLayout Direction="Row" Margin="16,16,0,0">
-                                    <Label
-                                        HorizontalTextAlignment="Start"
-                                        LineBreakMode="CharacterWrap"
-                                        XAlign="Start"
-                                        YAlign="Start">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span
-                                                    TextColor="Gray"
-                                                    Text="¡Hey, Sergio!
-                                                            Recuerda que pagar a tiempo hace que tu vida financiera sea mejor."
-                                                    FontAttributes="Bold"
-                                                    FontSize="Medium"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </FlexLayout>
+                                HeightRequest="152">
                             </pancakeview:PancakeView>
                         </Grid>
                     </pancakeview:PancakeView>
-                <!--NavigationBar-->
-               
                 </FlexLayout>
             </AbsoluteLayout>
         </ScrollView>
-        <!--<ScrollView>
-            <Grid x:Name="GR1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid x:Name="GR">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="114"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                     <pancakeview:PancakeView
-                         x:Name="NavBar"
-                         Elevation="10"
-                         Margin="16"
-                         CornerRadius="20"
-                         BackgroundColor="White"
-                         BorderColor="#0A23FB"
-                         BorderThickness="{OnPlatform Android=4, iOS=2}">
-                         <Grid x:Name="NavGrid" VerticalOptions="Start" Margin="8">
-                             <Grid.RowDefinitions>
-                                 <RowDefinition Height="Auto"/>
-                             </Grid.RowDefinitions>
-                             <Grid.ColumnDefinitions>
-                                 <ColumnDefinition Width="80"/>
-                                 <ColumnDefinition Width="90"/>
-                                 <ColumnDefinition Width="80"/>
-                                 <ColumnDefinition Width="Auto"/>
-                             </Grid.ColumnDefinitions>
-                             <Label
-                                 x:Name="Menu"
-                                 Margin="16"
-                                 VerticalTextAlignment="Center"
-                                 touch:TouchEff.NativeAnimation="False">
-                                 <Label.Effects>
-                                     <touch:TouchEff Completed="TouchEff_Completed"/>
-                                 </Label.Effects>
-                                 <Label.FormattedText>
-                                     <FormattedString>
-                                         <Span
-                                             FontFamily="FontAwesomeSolid"
-                                             FontSize="20"
-                                             TextColor="#0A23FB"
-                                             Text="{x:Static icons:Icons.Bars}"/>
-                                     </FormattedString>
-                                 </Label.FormattedText>
-                             </Label>
-                             <Label
-                                 VerticalOptions="Center"
-                                 TextColor="Black"
-                                 FontFamily="Roboto"
-                                 FontSize="20"
-                                 FontAttributes="Bold"
-                                 Grid.ColumnSpan="2"
-                                 Grid.Column="1">
-                                  <Label.Margin>
-                                     <OnPlatform x:TypeArguments="Thickness">
-                                         <On Platform="Android" Value="-45,15,0,15"/>
-                                         <On Platform="iOS" Value="-40,15,0,15"/>
-                                     </OnPlatform>
-                                 </Label.Margin>
-                                 <Label.FormattedText>
-                                     <FormattedString>
-                                         <Span Text="Tocapagar"/>
-                                     </FormattedString>
-                                 </Label.FormattedText>
-                             </Label>
-                             <pancakeview:PancakeView
-                                 x:Name="MessageContainer"
-                                 CornerRadius="10"
-                                 BackgroundColor="White"
-                                 BorderColor="#0A23FB"
-                                 BorderThickness="{OnPlatform Android=4, iOS=2}"
-                                 Grid.Column="2"
-                                 Grid.ColumnSpan="2"
-                                 HeightRequest="57">
-                                 <pancakeview:PancakeView.Margin>
-                                     <OnPlatform x:TypeArguments="Thickness">
-                                         <On Platform="Android" Value="-30,5,5,5"/>
-                                         <On Platform="iOS" Value="-20,5,5,5"/>
-                                     </OnPlatform>
-                                 </pancakeview:PancakeView.Margin>
-                                 <FlexLayout Direction="Row" Margin="16,0,0,0">
-                                      <Label
-                                         HorizontalTextAlignment="Start"
-                                         Margin="0,16,0,0"
-                                         FlexLayout.AlignSelf="Start">
-                                          <Label.Margin>
-                                              <OnPlatform x:TypeArguments="Thickness">
-                                                  <On Platform="Android" Value="0,0,0,0"/>
-                                                  <On Platform="iOS" Value="0,0,0,0"/>
-                                              </OnPlatform>
-                                          </Label.Margin>
-                                          <Label.FormattedText>
-                                              <FormattedString>
-                                                  <Span
-                                                      TextColor="Gray"
-                                                      Text="Hey Sergio .."
-                                                      FontAttributes="Bold"
-                                                      FontSize="15"/>
-                                             </FormattedString>
-                                          </Label.FormattedText>
-                                      </Label>
-                                     <Label
-                                         x:Name="ToggleArrow"
-                                         HorizontalTextAlignment="End"
-                                         FlexLayout.Grow="1"
-                                         FlexLayout.AlignSelf="Center"
-                                         TextColor="#0A23FB"
-                                         FontFamily="FontAwesomeSolid"
-                                         Text="{x:Static icons:Icons.AngleDown}"
-                                         FontSize="20">
-                                         <Label.Margin>
-                                             <OnPlatform x:TypeArguments="Thickness">
-                                                 <On Platform="Android" Value="0,8,16,0"/>
-                                                 <On Platform="iOS" Value="0,8,16,0"/>
-                                             </OnPlatform>
-                                         </Label.Margin>
-                                         <Label.Effects>
-                                             <touch:TouchEff Completed="NavArrowTapped"/>
-                                         </Label.Effects>
-                                     </Label>
-                                 </FlexLayout>
-                             </pancakeview:PancakeView>
-                             <pancakeview:PancakeView
-                                 x:Name="MessageContainer2"
-                                 CornerRadius="10"
-                                 BorderColor="#0A23FB"
-                                 IsVisible="False"
-                                 Grid.Row="1"
-                                 Grid.Column="0"
-                                 Grid.ColumnSpan="4"
-                                 HeightRequest="152"
-                                 BorderThickness="{OnPlatform Android=4, iOS=2}">
-                                 <pancakeview:PancakeView.Margin>
-                                     <OnPlatform x:TypeArguments="Thickness">
-                                         <On Platform="Android" Value="16"/>
-                                         <On Platform="iOS" Value="16"/>
-                                     </OnPlatform>
-                                 </pancakeview:PancakeView.Margin>
-                                 <FlexLayout Direction="Row" Margin="16,0,0,0">
-                                      <Label
-                                         HorizontalTextAlignment="Start"
-                                         LineBreakMode="CharacterWrap"
-                                         XAlign="Start"
-                                         YAlign="Start">
-                                          <Label.FormattedText>
-                                              <FormattedString>
-                                                  <Span
-                                                      TextColor="Gray"
-                                                      Text="¡Hey, Sergio!
-                                                             Recuerda que pagar a tiempo hace que tu vida financiera sea mejor."
-                                                      FontAttributes="Bold"
-                                                      FontSize="15"/>
-                                             </FormattedString>
-                                          </Label.FormattedText>
-                                      </Label>
-                                 </FlexLayout>
-                             </pancakeview:PancakeView>
-                         </Grid>
-                     </pancakeview:PancakeView>
-                NavigationBar
-               
-                </Grid>
-                  
-                <BoxView
-                    x:Name="BX"
-                    Margin="0,150,0,0"
-                    BackgroundColor="Green"/>
-                
-                    <BoxView
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    BackgroundColor="Green"/>
-                    <BoxView
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    BackgroundColor="Green"/>
-                    <BoxView
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    BackgroundColor="Green"/>
-                
-            </Grid>
-             NavigationBar
-        </ScrollView>-->
     </ContentPage.Content>
 </ContentPage>
