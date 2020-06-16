@@ -35,16 +35,12 @@
                         BackgroundColor="White"
                         BorderColor="#0A23FB"
                         BorderThickness="{OnPlatform Android=4, iOS=2}">
-                        <Grid x:Name="NavGrid" VerticalOptions="Center" Margin="8,8,8,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="90"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="75"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid
+                            x:Name="NavGrid"
+                            RowDefinitions="Auto"
+                            ColumnDefinitions="80,90,100,75"
+                            VerticalOptions="Center"
+                            Margin="8,8,8,0">
                             <Label
                                 x:Name="Menu"
                                 Margin="16,16,16,16"
@@ -98,14 +94,11 @@
                                         <On Platform="iOS" Value="-5,5,50,5"/>
                                     </OnPlatform>
                                 </pancakeview:PancakeView.Margin>
-                                <Grid HorizontalOptions="FillAndExpand" Margin="16,0,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
+                                <Grid
+                                    RowDefinitions="*"
+                                    ColumnDefinitions="*,Auto"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="16,0,0,0">
                                     <Label
                                         x:Name="MCTitle2"
                                         HorizontalOptions="Fill"
