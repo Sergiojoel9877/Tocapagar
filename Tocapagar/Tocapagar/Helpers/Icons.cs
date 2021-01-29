@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Tocapagar.Helpers
+namespace Tocapagar.Helpers.Icons
 {
     public class Icons
     {

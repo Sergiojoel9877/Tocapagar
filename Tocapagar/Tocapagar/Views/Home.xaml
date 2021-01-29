@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?hotReload preview.off?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True"
+    Shell.NavBarIsVisible="False"
+    xmlns:debugMode="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    debugMode:DebugRainbow.ShowColors="False"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:icons="clr-namespace:Tocapagar.Helpers.Icons" 
+    xmlns:xctEffects="clr-namespace:Xamarin.CommunityToolkit.Effects;assembly=Xamarin.CommunityToolkit"
+    x:Class="Tocapagar.Views.Home">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*">
+            <Grid x:Name="MainGrid" RowDefinitions="80,*">
+                <!--Hidden Message Container-->
+                <Frame
+                    x:Name="HiddenMessageContainer"
+                    Opacity="0"
+                    AnchorX="0"
+                    AnchorY="0"
+                    Grid.Row="1"
+                    Visual="Material"
+                    HeightRequest="140"
+                    VerticalOptions="Start"
+                    Margin="16,0,16,0"
+                    HasShadow="True"
+                    CornerRadius="10"
+                    IsVisible="False">
+                    <Label
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Gray"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Margin="16"
+                        Text="Recuerda que pagar a tiempo hace que tu vida financiera sea mejor." />
+                </Frame>
+                <Frame
+                    x:Name="GR"
+                    Visual="Material"
+                    HasShadow="True"
+                    VerticalOptions="Start"
+                    CornerRadius="10"
+                    Margin="16,16,16,0">
+                    <Grid
+                        x:Name="NavGrid"
+                        ColumnDefinitions="Auto,*"
+                        RowDefinitions="Auto"
+                        Margin="0"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand">
+                        <!--Menu & Title-->
+                        <pancakeview:PancakeView
+                            Grid.Column="1"
+                            VerticalOptions="Start"
+                            HeightRequest="57">
+                            <Grid
+                                CompressedLayout.IsHeadless="True"
+                                ColumnDefinitions="Auto,Auto"
+                                RowDefinitions="*">
+                                <Label                                          
+                                    x:Name="Menu"                               
+                                    HorizontalTextAlignment="Start"
+                                    VerticalOptions="Center"
+                                    FontFamily="FontAwesomeSolid"
+                                    FontSize="Medium"
+                                    TextColor="#0A23FB"
+                                    Text="{x:Static icons:Icons.Bars}"/>    
+                                <Label
+                                    Grid.Column="1"
+                                    TextColor="Black"
+                                    FontFamily="Roboto"
+                                    xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
+                                    xctEffects:TouchEffect.NativeAnimation="False"
+                                    HorizontalTextAlignment="End"
+                                    VerticalTextAlignment="Center"
+                                    Margin="{OnPlatform Android='20,-3,0,0', iOS='20,0,0,0'}"
+                                    FontSize="Medium"
+                                    FontAttributes="Bold"
+                                    Text="Tocapagar"/>
+                            </Grid>
+                        </pancakeview:PancakeView>
+                        <!--Message & Toggle Icon-->
+                        <pancakeview:PancakeView
+                            x:Name="MessageContainer"
+                            CornerRadius="10"
+                            Grid.Column="2"
+                            VerticalOptions="Start"
+                            xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
+                            xctEffects:TouchEffect.NativeAnimation="False">
+                            <Grid
+                                x:Name="TitleContainer"
+                                xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
+                                xctEffects:TouchEffect.NativeAnimation="False"
+                                RowDefinitions="*"
+                                ColumnDefinitions="Auto,*"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="16,0,0,0">
+                                <Label
+                                    x:Name="MCTitle"
+                                    Text="Hey Sergio..."
+                                    TextColor="Gray"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    HorizontalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Row="0"
+                                    Grid.Column="0">
+                                    <Label.Effects>
+                                        <xctEffects:TouchEffect Completed="NavArrowTapped"/>
+                                    </Label.Effects>
+                                </Label>
+                                <Label
+                                    x:Name="ToggleArrow"
+                                    HorizontalTextAlignment="End"
+                                    Margin="0"
+                                    VerticalOptions="Center"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
+                                    xctEffects:TouchEffect.NativeAnimation="False"
+                                    TextColor="#0A23FB"
+                                    FontFamily="FontAwesomeSolid"
+                                    FontSize="Large"
+                                    Text="{x:Static icons:Icons.AngleDown}"/>
+                            </Grid>
+                        </pancakeview:PancakeView>
+                    </Grid>
+                </Frame>
+                <!--Center-->
+                <BoxView
+                    x:Name="BX"
+                    Grid.Row="1"
+                    VerticalOptions="Center"
+                    BackgroundColor="Red"/>
+            </Grid>
+            <!--Footer-->
+            <Frame
+                x:Name="Footer"
+                BackgroundColor="White"
+                Visual="Material"
+                VerticalOptions="End"
+                HeightRequest="300"
+                HasShadow="True"
+                Opacity="0.7"
+                CornerRadius="20">
+                <Frame.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="FooterDragged"/>
+                </Frame.GestureRecognizers>
+                <Grid RowDefinitions="30,*,*,67" ColumnDefinitions="*,*,*">
+                    <BoxView
+                        WidthRequest="50"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="3"
+                        BackgroundColor="Gray"
+                        HeightRequest="4"
+                        Margin="0,-10,0,0"/>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

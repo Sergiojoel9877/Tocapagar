@@ -10,7 +10,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Material;
 using Shiny;
 using Android.Content;
-using TouchEffect.Android;
 
 namespace Tocapagar.Droid
 {
@@ -25,31 +24,29 @@ namespace Tocapagar.Droid
     ]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        readonly Lazy<App> _app = new Lazy<App>(()=> new App());
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            this.ShinyOnCreate();
             base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.SetFlags("Expander_Experimental");
-            
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            TouchEffectPreserver.Preserve();
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
-            LoadApplication(_app.Value);
+            LoadApplication(new App());
+            this.ShinyOnCreate();
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
+            this.ShinyOnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
         protected override void OnNewIntent(Intent intent)
         {
             this.ShinyOnNewIntent(intent);

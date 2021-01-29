@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Tocapagar
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
