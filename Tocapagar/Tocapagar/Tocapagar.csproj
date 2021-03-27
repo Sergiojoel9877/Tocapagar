@@ -4,21 +4,24 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
-
+  <PropertyGroup>
+   <LangVersion>latest</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
-    <PackageReference Include="Splat" Version="9.4.5" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.6.0.726" />
-    <PackageReference Include="Realm" Version="4.3.0" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
-    <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.0" />
-    <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.1-pre1" />
-    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1-pre1" />
-    <PackageReference Include="Shiny.Push" Version="1.1.0.1570-beta" />
-    <PackageReference Include="Shiny.Notifications" Version="1.1.0.1570" />
-    <PackageReference Include="Shiny.Core" Version="1.1.0.1570" />
-    <PackageReference Include="TouchView" Version="4.1.40" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Splat" Version="9.8.1" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.1905" />
+    <PackageReference Include="Realm" Version="10.0.0-beta.5" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
+    <PackageReference Include="AsyncAwaitBestPractices" Version="5.0.2" />
+    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
+    <PackageReference Include="Shiny.Push" Version="2.0.0.2434-preview" />
+    <PackageReference Include="Shiny.Notifications" Version="2.0.0.2434-preview" />
+    <PackageReference Include="Shiny.Core" Version="2.0.0.2434-preview" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\AboutPage.xaml" />
@@ -41,5 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\FontAwesome5Free-Solid-900.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
