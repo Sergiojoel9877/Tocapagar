@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
-using TouchEffect.iOS;
+using Xamarin.Forms.PancakeView.iOS;
 
 namespace Tocapagar.iOS
 {
@@ -24,13 +24,11 @@ namespace Tocapagar.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.SetFlags("Expander_Experimental");
-            TouchEffectPreserver.Preserve();
             global::Xamarin.Forms.Forms.Init(); 
             FormsMaterial.Init();
             LoadApplication(new App());
             FormsMaterial.Init();
-
+            ObjCRuntime.Class.ThrowOnInitFailure = false;
             return base.FinishedLaunching(app, options);
         }
     }

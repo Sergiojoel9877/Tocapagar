@@ -16,7 +16,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -53,43 +53,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.937-pre4" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Splat">
-      <Version>9.4.5</Version>
+      <Version>9.8.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.7.0.937-pre4</Version>
+      <Version>5.0.0.1905</Version>
     </PackageReference>
     <PackageReference Include="Realm">
-      <Version>4.3.0</Version>
+      <Version>10.0.0-beta.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Migration">
-      <Version>1.0.6.1</Version>
+      <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
-      <Version>1.0.0.1</Version>
+      <Version>1.0.0.6</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Google.Android.Material">
-      <Version>1.1.0.1-rc3</Version>
+      <Version>1.2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Browser">
-      <Version>1.2.0.1</Version>
+      <Version>1.3.0.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
-      <Version>2.2.0.1</Version>
+      <Version>2.3.0.2-alpha03</Version>
     </PackageReference>
     <PackageReference Include="Shiny.Core">
-      <Version>1.2.0.1686</Version>
+      <Version>2.0.0.2434-preview</Version>
     </PackageReference>
     <PackageReference Include="Shiny.Notifications">
-      <Version>1.2.0.1686</Version>
+      <Version>2.0.0.2434-preview</Version>
     </PackageReference>
     <PackageReference Include="Shiny.Push">
-      <Version>1.2.0.1686</Version>
+      <Version>2.0.0.2434-preview</Version>
     </PackageReference>
-    <PackageReference Include="TouchView">
-      <Version>4.1.51</Version>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.DebugRainbows">
+      <Version>1.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PancakeView">
+      <Version>2.3.0.759</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
