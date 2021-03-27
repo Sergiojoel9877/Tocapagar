@@ -143,17 +143,15 @@
             <!--Footer-->
             <Frame
                 x:Name="Footer"
-                BackgroundColor="White"
                 Visual="Material"
                 VerticalOptions="End"
-                HeightRequest="300"
-                HasShadow="True"
+                BackgroundColor="Black"
                 Opacity="0.7"
                 CornerRadius="20">
                 <Frame.GestureRecognizers>
                     <PanGestureRecognizer PanUpdated="FooterDragged"/>
                 </Frame.GestureRecognizers>
-                <Grid RowDefinitions="30,*,*,67" ColumnDefinitions="*,*,*">
+                <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*">
                     <BoxView
                         WidthRequest="50"
                         Grid.Column="1"
@@ -162,7 +160,7 @@
                         CornerRadius="3"
                         BackgroundColor="Gray"
                         HeightRequest="4"
-                        Margin="0,-10,0,0"/>
+                        Margin="0,-70,0,0"/>
                 </Grid>
             </Frame>
         </Grid>

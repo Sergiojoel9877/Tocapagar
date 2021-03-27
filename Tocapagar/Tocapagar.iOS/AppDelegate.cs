@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView.iOS;
 
 namespace Tocapagar.iOS
 {
@@ -27,7 +28,7 @@ namespace Tocapagar.iOS
             FormsMaterial.Init();
             LoadApplication(new App());
             FormsMaterial.Init();
-
+            ObjCRuntime.Class.ThrowOnInitFailure = false;
             return base.FinishedLaunching(app, options);
         }
     }

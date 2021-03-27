@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Material;
 using Shiny;
 using Android.Content;
+using Xamarin.Forms.PancakeView.Droid;
 
 namespace Tocapagar.Droid
 {
@@ -31,7 +32,6 @@ namespace Tocapagar.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);

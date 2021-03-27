@@ -8,11 +8,11 @@
    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1-preview1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Splat" Version="9.8.1" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.1905" />
     <PackageReference Include="Realm" Version="10.0.0-beta.5" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.763-beta" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Sharpnado.TaskMonitor" Version="1.0.2" />
     <PackageReference Include="AsyncAwaitBestPractices" Version="5.0.2" />
     <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
