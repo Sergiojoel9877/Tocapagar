@@ -91,6 +91,14 @@ namespace Tocapagar.Views
             else
             {
                 //iP11-fixed-val: 283.039993286133 | -percentage-val: 261.492131710052| Device-fixed-val: 229.05 | -percentage-val: (1st iteration: 306) (2nd iteration: 162 ) (3rd iteration: 234)  |
+                if (DeviceDisplay.MainDisplayInfo.Width < 828)
+                {
+                    iOSPerDensityScreenHeight = PerDensityScreenHeight - (PerDensityScreenHeight * 0.36837648273f);
+                    FooterInitialTranslationY = iOSPerDensityScreenHeight + (iOSPerDensityScreenHeight * 0.10);
+                    Footer.TranslationY = FooterInitialTranslationY;
+                    UpdateAddNewTaskButtonMargins();
+                    return;
+                }
                 iOSPerDensityScreenHeight = PerDensityScreenHeight - (PerDensityScreenHeight * 0.36837648273f) /*130.96f*/;
                 FooterInitialTranslationY = iOSPerDensityScreenHeight + (iOSPerDensityScreenHeight * 0.20);
                 Footer.TranslationY = FooterInitialTranslationY;
