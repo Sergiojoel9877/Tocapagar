@@ -150,7 +150,8 @@ namespace Tocapagar.Views
                 FooterOpenedValue = AndroidPerDensityScreenHeight * 0.12;
                 AnimationStateMachine.Add(PageStates.Open, new ViewTransition[] {
                     new ViewTransition(Footer, AnimationType.TranslationY, FooterOpenedValue),
-                    new ViewTransition(Footer, AnimationType.Opacity, 1)
+                    new ViewTransition(Footer, AnimationType.Opacity, 1),
+                    new ViewTransition(AddNewTaskButton, AnimationType.Opacity, 0)
                 });
             }
             else
@@ -158,12 +159,14 @@ namespace Tocapagar.Views
                 FooterOpenedValue = iOSPerDensityScreenHeight * 0.13;
                 AnimationStateMachine.Add(PageStates.Open, new ViewTransition[] {
                     new ViewTransition(Footer, AnimationType.TranslationY, FooterOpenedValue),
-                    new ViewTransition(Footer, AnimationType.Opacity, 1)
+                    new ViewTransition(Footer, AnimationType.Opacity, 1),
+                    new ViewTransition(AddNewTaskButton, AnimationType.Opacity, 0)
                 });
             }
             AnimationStateMachine.Add(PageStates.Peek, new ViewTransition[] {
                 new ViewTransition(Footer, AnimationType.TranslationY, FooterInitialTranslationY),
-                new ViewTransition(Footer, AnimationType.Opacity, 0.7)
+                new ViewTransition(Footer, AnimationType.Opacity, 0.7),
+                new ViewTransition(AddNewTaskButton, AnimationType.Opacity, 1)
             });
         }
 
