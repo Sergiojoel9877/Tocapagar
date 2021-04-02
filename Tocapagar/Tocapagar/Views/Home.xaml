@@ -145,7 +145,8 @@
                 x:Name="Footer"
                 Visual="Material"
                 VerticalOptions="End"
-                BackgroundColor="Black"
+                BackgroundColor="White"
+                BorderColor="#0A23FB"
                 Opacity="0.7"
                 CornerRadius="20">
                 <Frame.GestureRecognizers>
