@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using Tocapagar.Helpers;
-using Xamarin.Forms.PancakeView;
-using System.Threading.Tasks;
-using System.Linq;
-using Xamarin.Essentials;
-using Xamarin.Forms.Xaml;
-using Sharpnado.Tasks;
-using Tocapagar.Helpers.Icons;
-using System.Windows.Input;
-using Xamarin.CommunityToolkit.Effects;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Tocapagar.Helpers;
+using Xamarin.CommunityToolkit.Effects;
+using Xamarin.Essentials;
+using Xamarin.Forms;
+using System.Linq;
+using XFInternals = Xamarin.Forms.Internals;
+using System.Collections.Generic;
 
 namespace Tocapagar.Views
 {
