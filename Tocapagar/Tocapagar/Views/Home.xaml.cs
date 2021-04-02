@@ -29,6 +29,7 @@ namespace Tocapagar.Views
         double FooterOpenedValue { get; set; }
         double LastVelocity { get; set; }
         double PreviousPositionY { get; set; }
+        Thickness AddNewTaskBtnMargin { get; set; }
 
         public ICommand MessageContainerCommand { get; set; }
 
@@ -64,9 +65,16 @@ namespace Tocapagar.Views
 
             MainGrid.LowerChild(Footer);
 
+            SetAddNewTaskButtonMargin();
             SetNavHeight();
             SetFooterTranslationY();
             SetFooterHeight();
+        void SetAddNewTaskButtonMargin()
+        {
+            if(DeviceInfo.Platform == DevicePlatform.iOS)
+                AddNewTaskButton.Margin = AddNewTaskBtnMargin = new Thickness(16, 0, 16, -SettingsButton.HeightRequest + 36);
+            else
+                AddNewTaskButton.Margin = AddNewTaskBtnMargin = new Thickness(16,0,16,SettingsButton.HeightRequest);
         }
 
         void SetFooterHeight()
@@ -91,6 +99,16 @@ namespace Tocapagar.Views
                 FooterInitialTranslationY = iOSPerDensityScreenHeight + (iOSPerDensityScreenHeight * 0.20);
                 Footer.TranslationY = FooterInitialTranslationY;
             }
+        }
+
+        void UpdateAddNewTaskButtonMargins()
+        {
+            MainThread.BeginInvokeOnMainThread(()=>
+            {
+                var addNewTaskBtnMargin = AddNewTaskBtnMargin;
+                var overridedMargin = new Thickness(addNewTaskBtnMargin.Left, addNewTaskBtnMargin.Top, addNewTaskBtnMargin.Right, addNewTaskBtnMargin.Bottom + (FooterInitialTranslationY * 0.10));
+                AddNewTaskButton.Margin = overridedMargin;
+            });
         }
 
         void CleanUp()
