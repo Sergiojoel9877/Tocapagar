@@ -293,7 +293,7 @@ namespace Tocapagar.Views
                     if (DeviceInfo.Platform == DevicePlatform.Android)
                         delta += Footer.TranslationY;
                     if (IsValidDelta(delta))
-                        await Task.WhenAll(UpdateFooterTranslationYAsync(delta), UpdateFooterOpacity(e));
+                        await UpdateFooterTranslationYAsync(delta);
 #if DEBUG
                     Debug.WriteLine($"OS: {DeviceInfo.Platform} Dragging: {delta} Footer Y: {Footer.TranslationY} Footer Opacity: {Footer.Opacity}");
 #endif
@@ -312,10 +312,6 @@ namespace Tocapagar.Views
                     break;
             }
         }
-
-        Task<bool> UpdateFooterOpacity(PanUpdatedEventArgs e) => (!IsSwipeUp(e)) ? Footer.FadeTo(0.7) : Footer.FadeTo(1);
-        
-        bool IsSwipeUp(PanUpdatedEventArgs e) => e.TotalY < 0.01;
 
         bool IsValidDelta(double delta) => delta > 15 && delta <= (FooterInitialTranslationY + 5);
 
