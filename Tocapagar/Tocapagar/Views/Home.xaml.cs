@@ -247,7 +247,8 @@ namespace Tocapagar.Views
 
         async void HomeScrollView_Scrolled(object sender, Xamarin.Forms.ScrolledEventArgs e)
         {
-            if (ToggleArrow.RotationX == 180)
+            if (NavMessageContainerToggleArrow.RotationX == 180)
+                await CloseDropDown(HiddenMessageContainer);
                 await CloseDropDown(HiddenMessageContainer);
         }
 
