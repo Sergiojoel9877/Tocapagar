@@ -164,6 +164,19 @@
                         Margin="0,-80,0,0"/>
                 </Grid>
             </Frame>
+            <Button
+                x:Name="AddNewTaskButton"
+                Text="+"
+                FontSize="Large"
+                FontAttributes="Bold"
+                TextColor="#0A23FB"
+                Visual="Material"
+                HeightRequest="65"
+                WidthRequest="65"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                CornerRadius="{x:OnPlatform Android='50', iOS='32'}"
+                BackgroundColor="White"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
