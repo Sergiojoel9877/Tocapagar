@@ -249,6 +249,32 @@ namespace Tocapagar.Views
         {
             if (NavMessageContainerToggleArrow.RotationX == 180)
                 await CloseDropDown(HiddenMessageContainer);
+        }
+
+        async void FooterTapped(object sender, System.EventArgs e)
+        {
+            await CheckPageState();
+        }
+
+        async Task CheckPageState()
+        {
+            await CheckNavMessageContainerToggleArrowRotation();
+
+            if (AnimationStateMachine.CurrentState == null)
+            {
+                AnimationStateMachine.Go(PageStates.Open);
+                return;
+            }
+
+            if (AnimationStateMachine.CurrentState.ToString().ToUpperInvariant() == "OPEN")
+                AnimationStateMachine.Go(PageStates.Peek);
+            else
+                AnimationStateMachine.Go(PageStates.Open);
+        }
+
+        async Task CheckNavMessageContainerToggleArrowRotation()
+        {
+            if (NavMessageContainerToggleArrow.RotationX == 180)
                 await CloseDropDown(HiddenMessageContainer);
         }
 
