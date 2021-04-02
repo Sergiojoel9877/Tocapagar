@@ -304,8 +304,8 @@ namespace Tocapagar.Views
                         AnimationStateMachine.Go(PageStates.Open);
                     else
                         AnimationStateMachine.Go(PageStates.Peek);
-                    if (ToggleArrow.RotationX == 180)
-                        _ = CloseDropDown(HiddenMessageContainer);
+                        await CheckNavMessageContainerToggleArrowRotation();
+                    }
                     break;
 
                 case GestureStatus.Canceled:
