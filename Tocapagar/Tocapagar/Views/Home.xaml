@@ -161,7 +161,7 @@
                         CornerRadius="3"
                         BackgroundColor="Gray"
                         HeightRequest="4"
-                        Margin="0,-70,0,0"/>
+                        Margin="0,-80,0,0"/>
                 </Grid>
             </Frame>
         </Grid>
