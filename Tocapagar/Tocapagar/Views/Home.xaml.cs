@@ -201,12 +201,21 @@ namespace Tocapagar.Views
                 else
                     IsRunning = true;
 
-            if (ToggleArrow.RotationX == 0)
-                await MainThread.InvokeOnMainThreadAsync(async () => await OpenDropDown(HiddenMessageContainer));
-            else if (ToggleArrow.RotationX == 180)
+            if (NavMessageContainerToggleArrow.RotationX == 0)
+                await MainThread.InvokeOnMainThreadAsync(async () =>
+                {
+                    await OpenDropDown(HiddenMessageContainer);
+                    DropBottomSheet();
+                });
+            else if (NavMessageContainerToggleArrow.RotationX == 180)
                 await MainThread.InvokeOnMainThreadAsync(async () => await CloseDropDown(HiddenMessageContainer));
 
             IsRunning = false;
+        }
+
+        void DropBottomSheet()
+        {
+            AnimationStateMachine.Go(PageStates.Peek);
         }
 
         async Task CloseDropDown(VisualElement hiddenMessageContainer)
