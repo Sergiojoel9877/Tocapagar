@@ -42,7 +42,7 @@
                         Text="Recuerda que pagar a tiempo hace que tu vida financiera sea mejor." />
                 </Frame>
                 <Frame
-                    x:Name="GR"
+                    x:Name="Nav"
                     Visual="Material"
                     HasShadow="True"
                     VerticalOptions="Start"
@@ -65,7 +65,7 @@
                                 ColumnDefinitions="Auto,Auto"
                                 RowDefinitions="*">
                                 <Label                                          
-                                    x:Name="Menu"                               
+                                    x:Name="NavMenu"                               
                                     HorizontalTextAlignment="Start"
                                     VerticalOptions="Center"
                                     FontFamily="FontAwesomeSolid"
@@ -86,16 +86,16 @@
                                     Text="Tocapagar"/>
                             </Grid>
                         </pancakeview:PancakeView>
-                        <!--Message & Toggle Icon-->
+                        <!--Nav Message Container & Nav Toggle Icon-->
                         <pancakeview:PancakeView
-                            x:Name="MessageContainer"
+                            x:Name="NavMessageContainer"
                             CornerRadius="10"
                             Grid.Column="2"
                             VerticalOptions="Start"
                             xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
                             xctEffects:TouchEffect.NativeAnimation="False">
                             <Grid
-                                x:Name="TitleContainer"
+                                x:Name="NavMessageContainerGrid"
                                 xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
                                 xctEffects:TouchEffect.NativeAnimation="False"
                                 RowDefinitions="*"
@@ -103,7 +103,7 @@
                                 HorizontalOptions="FillAndExpand"
                                 Margin="16,0,0,0">
                                 <Label
-                                    x:Name="MCTitle"
+                                    x:Name="NavMessageContainerTitle"
                                     Text="Hey Sergio..."
                                     TextColor="Gray"
                                     FontAttributes="Bold"
@@ -117,7 +117,7 @@
                                     </Label.Effects>
                                 </Label>
                                 <Label
-                                    x:Name="ToggleArrow"
+                                    x:Name="NavMessageContainerToggleArrow"
                                     HorizontalTextAlignment="End"
                                     Margin="0"
                                     VerticalOptions="Center"

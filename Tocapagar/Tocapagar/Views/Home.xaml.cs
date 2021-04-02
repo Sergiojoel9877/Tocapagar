@@ -56,11 +56,11 @@ namespace Tocapagar.Views
 
             MenuEffect = new TouchEffect();
             MenuEffect.Completed += MenuIconTapped;
-            Menu.Effects.Add(MenuEffect);
+            NavMenu.Effects.Add(MenuEffect);
 
             ToggleEff = new TouchEffect();
             ToggleEff.Completed += NavArrowTapped;
-            ToggleArrow.Effects.Add(ToggleEff);
+            NavMessageContainerToggleArrow.Effects.Add(ToggleEff);
 
             MainGrid.LowerChild(Footer);
 
@@ -105,11 +105,11 @@ namespace Tocapagar.Views
 
             MenuEffect.Completed -= MenuIconTapped;
             MenuEffect = null;
-            Menu.Effects.Clear();
+            NavMenu.Effects.Clear();
 
             ToggleEff.Completed -= NavArrowTapped;
             ToggleEff = null;
-            ToggleArrow.Effects.Clear();
+            NavMessageContainerToggleArrow.Effects.Clear();
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -160,7 +160,7 @@ namespace Tocapagar.Views
         void SetNavHeight()
         {
             var height = DeviceDisplay.MainDisplayInfo.Width / (DeviceDisplay.MainDisplayInfo.Density * DeviceDisplay.MainDisplayInfo.Density * 5.5f);
-            GR.HeightRequest = height;
+            Nav.HeightRequest = height;
         }
 
         void MenuIconTapped(object sender, EventArgs args)
@@ -189,7 +189,7 @@ namespace Tocapagar.Views
             await Task.Yield();
             _ = hiddenMessageContainer.RotateXTo(-90, easing: Easing.SpringOut);
             await hiddenMessageContainer.FadeTo(0, easing: Easing.Linear);
-            _ = ToggleArrow.RotateXTo(0);
+            _ = NavMessageContainerToggleArrow.RotateXTo(0);
             hiddenMessageContainer.IsVisible = false;
             Debug.WriteLine($"OS: {DeviceInfo.Platform} ClosingDropDown");
             return;
@@ -199,11 +199,11 @@ namespace Tocapagar.Views
         {
             MainGrid.RaiseChild(HiddenMessageContainer);
             hiddenMessageContainer.RotationX = -90;
-            hiddenMessageContainer.TranslationY = -GR.HeightRequest / 3.5;
+            hiddenMessageContainer.TranslationY = -Nav.HeightRequest / 3.5;
             hiddenMessageContainer.IsVisible = true;
             await Task.WhenAll
             (
-                ToggleArrow.RotateXTo(180),
+                NavMessageContainerToggleArrow.RotateXTo(180),
                 hiddenMessageContainer.FadeTo(1, easing: Easing.Linear),
                 hiddenMessageContainer.RotateXTo(0, easing: Easing.SpringOut)
             );
