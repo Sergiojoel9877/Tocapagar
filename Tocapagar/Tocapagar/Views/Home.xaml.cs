@@ -324,5 +324,6 @@ namespace Tocapagar.Views
             =>  (Math.Abs(delta) > 0.01)
             ?   MainThread.InvokeOnMainThreadAsync(()=> SetYTranslation(Footer,delta))
             :   Task.CompletedTask;
+
     }
 }
