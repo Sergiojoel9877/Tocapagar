@@ -301,8 +301,11 @@ namespace Tocapagar.Views
 
                 case GestureStatus.Completed:
                     if (Footer.TranslationY < DragThreshold)
+                    {
                         AnimationStateMachine.Go(PageStates.Open);
+                    }
                     else
+                    {
                         AnimationStateMachine.Go(PageStates.Peek);
                         await CheckNavMessageContainerToggleArrowRotation();
                     }
