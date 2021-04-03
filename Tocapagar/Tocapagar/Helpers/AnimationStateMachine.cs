@@ -34,7 +34,7 @@ namespace Tocapagar.Helpers
             _stateTransitions.Add(stateStr, viewTransitions);
         }
 
-        public object CurrentState { get; set; }
+        public static object CurrentState { get; set; }
 
         public void Go(object newState, bool withAnimation = true)
         {

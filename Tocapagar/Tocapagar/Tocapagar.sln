@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.808.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tocapagar", "Tocapagar.csproj", "{511C557A-CD7F-4D80-BD06-EA79A4C4B5CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{511C557A-CD7F-4D80-BD06-EA79A4C4B5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511C557A-CD7F-4D80-BD06-EA79A4C4B5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511C557A-CD7F-4D80-BD06-EA79A4C4B5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511C557A-CD7F-4D80-BD06-EA79A4C4B5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC729579-27A3-42E7-9EE1-FAE10A96DA82}
+	EndGlobalSection
+EndGlobal
