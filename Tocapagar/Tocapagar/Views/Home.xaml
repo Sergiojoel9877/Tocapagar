@@ -151,6 +151,7 @@
                 CornerRadius="20">
                 <Frame.GestureRecognizers>
                     <PanGestureRecognizer PanUpdated="FooterDragged"/>
+                    <TapGestureRecognizer Tapped="FooterTapped"/>
                 </Frame.GestureRecognizers>
                 <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*">
                     <BoxView
