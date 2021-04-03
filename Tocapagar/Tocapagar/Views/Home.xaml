@@ -163,6 +163,15 @@
                         BackgroundColor="Gray"
                         HeightRequest="4"
                         Margin="0,-80,0,0"/>
+                    <StackLayout
+                        x:Name="SettingsButton"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        BackgroundColor="Black"
+                        Grid.Row="0"
+                        Margin="16,0,0,0"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"/>
                 </Grid>
             </Frame>
             <Button

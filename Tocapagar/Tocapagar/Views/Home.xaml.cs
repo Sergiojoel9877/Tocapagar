@@ -65,6 +65,8 @@ namespace Tocapagar.Views
             SetNavHeight();
             SetFooterTranslationY();
             SetFooterHeight();
+        }
+
         void SetAddNewTaskButtonMargin()
         {
             if(DeviceInfo.Platform == DevicePlatform.iOS)
