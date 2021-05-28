@@ -165,6 +165,15 @@
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.763-beta</Version>
     </PackageReference>
+    <PackageReference Include="ReactiveUI">
+      <Version>13.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.XamForms">
+      <Version>13.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.Events.XamForms">
+      <Version>13.3.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tocapagar\Tocapagar.csproj">
