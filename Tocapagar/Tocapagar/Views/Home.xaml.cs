@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Tocapagar.Helpers;
 using Xamarin.CommunityToolkit.Effects;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.Linq;
-using XFInternals = Xamarin.Forms.Internals;
-using System.Collections.Generic;
-using ReactiveUI;
-using ReactiveUI.XamForms;
-using System.Reactive.Linq;
-using System.Reactive;
 
 namespace Tocapagar.Views
 {
