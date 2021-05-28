@@ -28,7 +28,7 @@
                     Visual="Material"
                     HeightRequest="140"
                     VerticalOptions="Start"
-                    Margin="16,0,16,0"
+                    Margin="16,5,16,0"
                     HasShadow="True"
                     CornerRadius="10"
                     IsVisible="False">
@@ -91,13 +91,9 @@
                             x:Name="NavMessageContainer"
                             CornerRadius="10"
                             Grid.Column="2"
-                            VerticalOptions="Start"
-                            xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
-                            xctEffects:TouchEffect.NativeAnimation="False">
+                            VerticalOptions="Start">
                             <Grid
                                 x:Name="NavMessageContainerGrid"
-                                xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
-                                xctEffects:TouchEffect.NativeAnimation="False"
                                 RowDefinitions="*"
                                 ColumnDefinitions="Auto,*"
                                 HorizontalOptions="FillAndExpand"
@@ -112,9 +108,6 @@
                                     VerticalTextAlignment="Center"
                                     Grid.Row="0"
                                     Grid.Column="0">
-                                    <Label.Effects>
-                                        <xctEffects:TouchEffect Completed="NavArrowTapped"/>
-                                    </Label.Effects>
                                 </Label>
                                 <Label
                                     x:Name="NavMessageContainerToggleArrow"
@@ -123,12 +116,14 @@
                                     VerticalOptions="Center"
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    xctEffects:TouchEffect.Command="{Binding MessageContainerCommand}"
-                                    xctEffects:TouchEffect.NativeAnimation="False"
                                     TextColor="#0A23FB"
                                     FontFamily="FontAwesomeSolid"
                                     FontSize="Large"
-                                    Text="{x:Static icons:Icons.AngleDown}"/>
+                                    Text="{x:Static icons:Icons.AngleDown}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ToggleTapped" NumberOfTapsRequired="1"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </Grid>
                         </pancakeview:PancakeView>
                     </Grid>

@@ -19,7 +19,6 @@ namespace Tocapagar.Views
     public partial class Home : ContentPage
     {
         object Locker { get; set; }
-        bool IsRunning { get; set; }
         double DragThreshold { get; set; }
         public double PerDensityScreenHeight { get; private set; }
         double iOSPerDensityScreenHeight;
@@ -29,17 +28,14 @@ namespace Tocapagar.Views
         double FooterOpenedValue { get; set; }
         double LastVelocity { get; set; }
         double PreviousPositionY { get; set; }
+
         Thickness AddNewTaskBtnMargin { get; set; }
 
-        public ICommand MessageContainerCommand { get; set; }
-
         TouchEffect MenuEffect { get; set; }
-        TouchEffect ToggleEff { get; set; }
         AnimationStateMachine AnimationStateMachine { get; set; }
 
         public Home()
         {
-            IsRunning = false;
             InitializeComponent();
         }
 
@@ -53,15 +49,9 @@ namespace Tocapagar.Views
 
             DragThreshold = 200;
 
-            MessageContainerCommand = new Command(() => NavArrowTapped(null, null));
-
             MenuEffect = new TouchEffect();
             MenuEffect.Completed += MenuIconTapped;
             NavMenu.Effects.Add(MenuEffect);
-
-            ToggleEff = new TouchEffect();
-            ToggleEff.Completed += NavArrowTapped;
-            NavMessageContainerToggleArrow.Effects.Add(ToggleEff);
 
             MainGrid.LowerChild(Footer);
 
@@ -69,6 +59,11 @@ namespace Tocapagar.Views
             SetNavHeight();
             SetFooterTranslationY();
             SetFooterHeight();
+        }
+
+        async void ToggleTapped(object sender, EventArgs e)
+        {
+            await MainThread.InvokeOnMainThreadAsync(async () => await NavArrowTapped(null, null));
         }
 
         void SetAddNewTaskButtonMargin()
@@ -126,18 +121,11 @@ namespace Tocapagar.Views
             BindingContext = null;
 
             Locker = null;
-
-            MessageContainerCommand = null;
-
             AnimationStateMachine = null;
 
             MenuEffect.Completed -= MenuIconTapped;
             MenuEffect = null;
             NavMenu.Effects.Clear();
-
-            ToggleEff.Completed -= NavArrowTapped;
-            ToggleEff = null;
-            NavMessageContainerToggleArrow.Effects.Clear();
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -199,24 +187,21 @@ namespace Tocapagar.Views
             Shell.Current.FlyoutIsPresented = true;
         }
 
-        public async void NavArrowTapped(object sender, EventArgs args)
+        public Task NavArrowTapped(object sender, EventArgs args)
         {
             lock (Locker)
-                if (IsRunning)
-                    return;
-                else
-                    IsRunning = true;
-
-            if (NavMessageContainerToggleArrow.RotationX == 0)
-                await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                if (NavMessageContainerToggleArrow.RotationX == 0)
                 {
-                    await OpenDropDown(HiddenMessageContainer);
                     DropBottomSheet();
-                });
-            else if (NavMessageContainerToggleArrow.RotationX == 180)
-                await MainThread.InvokeOnMainThreadAsync(async () => await CloseDropDown(HiddenMessageContainer));
-
-            IsRunning = false;
+                    return OpenDropDown(HiddenMessageContainer);
+                }
+                else if (NavMessageContainerToggleArrow.RotationX == 180)
+                {
+                    return CloseDropDown(HiddenMessageContainer);
+                }
+                return Task.CompletedTask;
+            }
         }
 
         void DropBottomSheet()
@@ -226,10 +211,12 @@ namespace Tocapagar.Views
 
         async Task CloseDropDown(VisualElement hiddenMessageContainer)
         {
-            await Task.Yield();
-            _ = hiddenMessageContainer.RotateXTo(-90, easing: Easing.SpringOut);
-            await hiddenMessageContainer.FadeTo(0, easing: Easing.Linear);
-            _ = NavMessageContainerToggleArrow.RotateXTo(0);
+            await Task.WhenAll
+            (
+                hiddenMessageContainer.RotateXTo(-90, easing: Easing.SpringOut),
+                hiddenMessageContainer.FadeTo(0, easing: Easing.Linear),
+                NavMessageContainerToggleArrow.RotateXTo(0)
+            );
             hiddenMessageContainer.IsVisible = false;
             Debug.WriteLine($"OS: {DeviceInfo.Platform} ClosingDropDown");
             return;
